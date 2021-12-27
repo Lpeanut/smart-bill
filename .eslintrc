@@ -1,0 +1,19 @@
+{
+    "extends": "eslint-config-egg",
+    "rules": {
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1,
+                "VariableDeclarator": 1
+            }
+        ],
+        "comma-dangle": [
+            "error",
+            "never"
+        ],
+        "object-curly-spacing": ["error", "always"],
+        "max-len": ["error", {"tabWidth": 4, "code": 150}]
+    }
+}

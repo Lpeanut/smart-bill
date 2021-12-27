@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="http://localhost:7001/upload" method="post" id="form">
+        <input type="file" accept="image/*" id="image">
+        <button type="submit">提交</button>
+    </form>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    const form = document.querySelector("#form");
+    form.onsubmit = function(e) {
+        e.preventDefault();
+        const imageInput = document.querySelector('#image');
+        const file = imageInput.files
+        console.log(file)
+        // return false
+    }
+    const imageInput = document.querySelector('#image');
+    imageInput.addEventListener('change', e => {
+        // console.log('file', imageInput.files[0])
+        const file = imageInput.files[0];
+        const formData = new FormData();
+        formData.append('file', file)
+        // formData.append('files', imageInput.files[0]);
+        const options = {
+            method: 'POST',
+            headers: {
+                'content-type': 'form-data',
+                authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiLlrovmsZ8iLCJleHAiOjE2NDAyNDczOTksImlhdCI6MTY0MDE2MDk5OX0.bOou6OROG7iZ5cOpVNvgCFO4fyD9V23aLgE15uTkITQ'
+            },
+            data: formData,
+            url: 'http://localhost:7001/upload',
+        };
+        axios(options);
+    })
+</script>
+</html>
